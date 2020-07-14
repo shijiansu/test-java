@@ -1,4 +1,4 @@
-package test.junit4;
+package test.java.junit4.basics;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;

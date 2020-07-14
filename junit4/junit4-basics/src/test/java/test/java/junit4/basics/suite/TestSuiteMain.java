@@ -1,4 +1,4 @@
-package test.junit4.suite;
+package test.java.junit4.basics.suite;
 
 import org.junit.runner.Result;
 import org.junit.runner.notification.Failure;

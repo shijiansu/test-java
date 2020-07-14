@@ -1,4 +1,4 @@
-package test.easymock.basic;
+package test.java.easymock3.basics;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;

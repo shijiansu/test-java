@@ -1,4 +1,4 @@
-package test.easymock.basic;
+package test.java.easymock3.basics;
 
 public class CalculatorOfIncome {
 	// get the income by position
