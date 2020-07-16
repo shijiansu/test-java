@@ -16,8 +16,10 @@
 
 - junit4
   - junit4-basics - examples of junit4 basic syntax and usage
-- easymock3
+- easymock
   - easymock-basics - examples of easymock basic syntax and usage
+- mockito
+  - mockito3-first-try - examples of mockito to with mock features, BDD, static method
 
 --------------------------------------------------------------------------------
 

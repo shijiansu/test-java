@@ -9,7 +9,7 @@ import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
 // Benefit is no need to import the "mockito-junit-jupiter";
-// It can import seperately of mockito and junit5
+// It can import separately of mockito and junit5
 public class _2_BookReaderTest {
   @Mock Book mockedBook;
 
