@@ -43,7 +43,7 @@ public class _2_StartupAndTearDownTest {
   @Test
   public void divide() {
     System.out.println("testDivide....");
-    BigDecimal expected = new BigDecimal(0.5);
+    BigDecimal expected = new BigDecimal("0.5");
     BigDecimal actual = c.divide(x, y);
     assertEquals(expected, actual);
     // fail("Not yet implemented");
@@ -52,7 +52,7 @@ public class _2_StartupAndTearDownTest {
   @Test(expected = ArithmeticException.class)
   public void divide_zero() {
     System.out.println("testDivide....");
-    BigDecimal expected = new BigDecimal(0.5);
+    BigDecimal expected = new BigDecimal("0.5");
     BigDecimal actual = c.divide(x, 0);
     assertEquals(expected, actual);
     // fail("Not yet implemented");
