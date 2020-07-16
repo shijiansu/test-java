@@ -17,6 +17,7 @@ public class _2_BookReaderTest {
 
   @BeforeEach
   public void setUp() {
+    // for @Mock when without "MockitoExtension"
     MockitoAnnotations.openMocks(this);
     reader = new BookReader(mockedBook);
   }
