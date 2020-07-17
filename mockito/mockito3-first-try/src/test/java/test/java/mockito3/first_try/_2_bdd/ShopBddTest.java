@@ -25,6 +25,9 @@ public class ShopBddTest {
   public void should_buy_bread() {
     Bread b = new Bread();
     // given
+    // "When" and "Given" families.
+    // Simply treat them as aliases of each other.
+    // "Given" family is added in Mockito 1.8.x as to make it looks more aligned to BDD practices.
     given(seller.askForBread()).willReturn(b);
     // when
     Goods goods = shop.buyBread();
