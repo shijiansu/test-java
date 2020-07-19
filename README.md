@@ -19,7 +19,7 @@
 - easymock
   - easymock-basics - examples of easymock basic syntax and usage
 - mockito
-  - mockito3-first-try - examples of mockito to with mock features, BDD, static method
+  - mockito3-first-try - examples of mockito to with mock features, BDD, static method, and all features mentions from official Mockito.java JavaDoc
 
 --------------------------------------------------------------------------------
 
