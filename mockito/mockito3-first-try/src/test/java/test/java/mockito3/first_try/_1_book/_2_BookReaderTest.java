@@ -3,6 +3,7 @@ package test.java.mockito3.first_try._1_book;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.Mockito;
@@ -34,4 +35,9 @@ public class _2_BookReaderTest {
     Mockito.when(mockedBook.getContent()).thenReturn("Mockito");
     assertEquals("Mockito", reader.getContent());
   }
+
+  @Test
+  @Disabled(
+      "org.junit.jupiter.api.extension.ParameterResolutionException: No ParameterResolver registered for parameter")
+  public void failed_get_content_with_answer(@Mock Book mockedBook) {}
 }
