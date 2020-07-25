@@ -1,5 +1,6 @@
 package test.java.mockito3.first_try._3_doreturn_vs_thenreturn;
 
+import static org.mockito.Mockito.doCallRealMethod;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.spy;
@@ -8,6 +9,7 @@ import static org.mockito.Mockito.when;
 
 import java.util.LinkedList;
 import java.util.List;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
@@ -55,11 +57,8 @@ public class UserTest {
 
     // Impossible: real method is called so spy.get(0)
     // throws IndexOutOfBoundsException (the list is yet empty)
-    try {
-      when(spiedList.get(0)).thenReturn("foo");
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
+    Assertions.assertThrows(
+        IndexOutOfBoundsException.class, () -> when(spiedList.get(0)).thenReturn("foo"));
     // You have to use doReturn() for stubbing
     doReturn("foo").when(spiedList).get(0);
   }
@@ -69,6 +68,7 @@ public class UserTest {
     AccountService accountService = spy(new AccountService("Account"));
     // created stubber, had hit the stubber, so it is no side effect (invoke actual obejct method)
     doNothing().when(accountService).sendDeleteRequest();
+    // doCallRealMethod()
     // cannot use when/thenThrow and when/then for a void method
     accountService.onHandleIntent(new Intent("DELETE"));
     verify(accountService).sendDeleteRequest();
