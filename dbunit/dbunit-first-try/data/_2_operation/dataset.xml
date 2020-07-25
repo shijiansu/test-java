@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+  <person ID="1" NAME="tester1" AGE="10" LOCATION="Beijing"/>
+  <person ID="2" NAME="tester2" AGE="20" LOCATION="Shanghai"/>
+  <person ID="3" NAME="tester3" AGE="30" LOCATION="Singapore"/>
+</dataset>
