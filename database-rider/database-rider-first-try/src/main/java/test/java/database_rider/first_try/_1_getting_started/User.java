@@ -7,7 +7,9 @@ import lombok.Data;
 
 @Data
 @Entity
-public class User { // update full class signature at "persistence.xml"
+public class User {
+
+  // update full class signature at "persistence.xml"
 
   @Id @GeneratedValue private long id;
 

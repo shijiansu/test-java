@@ -11,11 +11,15 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
+
 // There are two types of configuration in Database Rider: DataSet and DBUnit.
 @RunWith(JUnit4.class)
+// https://database-rider.github.io/database-rider/latest/documentation.html?theme=foundation#Configuration
 public class _2_DatabaseRiderConfigurationTest {
+
   // the instance("rider") is as in "persistence.xml" (JPA)
-  @Rule public EntityManagerProvider emProvider = EntityManagerProvider.instance(PERSISTENCE_UNIT_1);
+  @Rule
+  public EntityManagerProvider emProvider = EntityManagerProvider.instance(PERSISTENCE_UNIT_1);
 
   @Rule public DBUnitRule dbUnitRule = DBUnitRule.instance(emProvider.connection());
 

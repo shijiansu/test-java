@@ -7,21 +7,31 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static test.java.database_rider.first_try.Constants.PERSISTENCE_UNIT_1;
 
 import com.github.database.rider.core.DBUnitRule;
+import com.github.database.rider.core.api.configuration.DBUnit;
 import com.github.database.rider.core.api.dataset.DataSet;
 import com.github.database.rider.core.api.dataset.ExpectedDataSet;
 import com.github.database.rider.core.util.EntityManagerProvider;
 import java.util.List;
 import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.RuleChain;
+import org.junit.rules.TestRule;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
-@RunWith(JUnit4.class)
+@RunWith(JUnit4.class) // can remove
 public class _1_DatabaseRiderTest {
-  // the instance("rider") is as in "persistence.xml" (JPA)
-  @Rule public EntityManagerProvider emProvider = EntityManagerProvider.instance(PERSISTENCE_UNIT_1);
 
-  @Rule public DBUnitRule dbUnitRule = DBUnitRule.instance(emProvider.connection());
+  // the instance("rider") is as in "persistence.xml" (JPA)
+  @Rule
+  public EntityManagerProvider emProvider = EntityManagerProvider.instance(PERSISTENCE_UNIT_1);
+
+  // @Rule public DBUnitRule dbUnitRule = DBUnitRule.instance(emProvider.connection());
+
+  // use Rule Chain - [EntityManagerProvider rule] executes before DBUnit rule
+  @Rule
+  public TestRule rules =
+      RuleChain.outerRule(emProvider).around(DBUnitRule.instance(emProvider.connection()));
 
   @Test
   @DataSet({
@@ -76,8 +86,10 @@ public class _1_DatabaseRiderTest {
   @Test
   // You don’t need to initialize a dataset but can use cleanBefore to clear database
   // before testing.
-  // When you use a dataset like users.yml in @DataSet dbunit will use CLEAN_INSERT seeding strategy
-  // (by default) for all declared tables in dataset. This is why we didn’t needed cleanBefore in
+  // When you use a dataset like users.yml in @DataSet dbunit will use CLEAN_INSERT
+  // seeding strategy
+  // (by default) for all declared tables in dataset. This is why we didn’t needed
+  // cleanBefore in
   // any other example tests.
   @DataSet(cleanBefore = true) // 这里没有传入dataset, 所以配置手动clean
   @ExpectedDataSet("_1_getting_started/users-expected-regex.yml")
@@ -102,5 +114,20 @@ public class _1_DatabaseRiderTest {
         (Tweet) em().createQuery("select t from Tweet t where t.id = 1").getSingleResult();
     assertThat(tweet).isNotNull();
     assertThat(tweet.getLikes()).isEqualTo(50);
+  }
+
+  @Test
+  // Transactional attribute will make Database Rider start a transaction before test and commit the
+  // transaction after test execution but before expected dataset comparison.
+  @DataSet(cleanBefore = true, transactional = true, executorId = "TransactionIt")
+  @ExpectedDataSet(value = "_2_operation/user-expected-regex.yml")
+  @DBUnit(cacheConnection = true)
+  public void shouldManageTransactionAutomatically() {
+    User u = new User();
+    u.setName("expected user1");
+    User u2 = new User();
+    u2.setName("expected user2");
+    EntityManagerProvider.em().persist(u);
+    EntityManagerProvider.em().persist(u2);
   }
 }

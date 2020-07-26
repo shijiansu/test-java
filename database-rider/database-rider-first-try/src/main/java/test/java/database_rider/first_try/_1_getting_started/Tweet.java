@@ -13,7 +13,9 @@ import lombok.Data;
 
 @Data
 @Entity
-public class Tweet { // update full class signature at "persistence.xml"
+public class Tweet {
+
+  // update full class signature at "persistence.xml"
 
   @Id @GeneratedValue private String id;
 
