@@ -19,6 +19,7 @@
   </properties>
 
   <dependencies>
+    <!-- START -->
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
@@ -37,6 +38,7 @@
       <version>1.3</version>
       <scope>test</scope>
     </dependency>
+    <!-- END -->
   </dependencies>
 
   <build>
@@ -89,6 +91,15 @@
           <excludes>
             <exclude>**/*ManualTest.java</exclude>
           </excludes>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-report-plugin</artifactId>
+        <version>3.0.0-M5</version>
+        <!-- avoid "Unable to locate Test Source XRef to link to - DISABLED" warning -->
+        <configuration>
+          <linkXRef>false</linkXRef>
         </configuration>
       </plugin>
     </plugins>
