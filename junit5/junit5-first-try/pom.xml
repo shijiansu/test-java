@@ -84,6 +84,15 @@
           </excludes>
         </configuration>
       </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-report-plugin</artifactId>
+        <version>3.0.0-M5</version>
+        <!-- avoid "Unable to locate Test Source XRef to link to - DISABLED" warning -->
+        <configuration>
+          <linkXRef>false</linkXRef>
+        </configuration>
+      </plugin>
     </plugins>
   </build>
 </project>
