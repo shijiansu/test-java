@@ -14,34 +14,62 @@
 
 --------------------------------------------------------------------------------
 
+- allure-framework
+  - example-allure-framework - examples of Allure configuration
+- assertj
+- cucumber
+- database-rider
+  - database-rider-first-try - examples of database-rdier + JPA + HSQLDB + Assertj + JUnit4
+    - `database-rider` enhance `DBUnit` for below features,
+      - Integrating with JUnit4 (`@Rule`) and JUnit5 (`@ExtendWith`) + JPA (`EntityManagerProvider`)
+      - 也有支持`rider-spring` - 这个是支持JUnit4 + Spring (不用`Spring Test DBUnit` - 这个项目很久了, 最近更新是2016)
+        - 文档 - <https://github.com/database-rider/database-rider#8-spring>
+      - Import data - `@DataSet`
+      - Verify data - `@ExpectedDataSet`
+      - Export data - `@ExportDataSet`
+      - More file type support - e.g. yml
+      - Build to create DBUnit `IDataSet`
+  - database-rider-first-try-bdd (TBD) - examples of database-rdier + Cucumber (BDD) + CDI (Contexts and Dependency Injection for the Java EE platform)
+  - database-rider-first-try-junit5 - examples of database-rdier + JPA + HSQLDB + Assertj + JUnit5
+    - 直接支持JUnit5 + Spring, 不需要使用`rider-spring`
+- dbunit
+  - dbunit-first-try - examples of dbunit + H2 + Flyway + Apache Druid + JUnit4 (as default). Understand how to connect to database; export to dataset file; verify tables.
+    - Pre-condition, need to prepare the database structure e.g. schema and tables, the tables can be created via,
+      - Flyway, etc. database migration tool + embedded database environment;
+      - Hibernate auto-ddl = create, with or without Spring + embedded database environment;
+      - Existing database server with tables.
+    - Key features
+      - Wrapper with database connection
+      - Import dataset file to database data
+      - Export database data to dataset file
+      - Verify data
+        - 单纯的`DBUnit`, 是通过DBUnit的API, 直接verify其ITable
+        - 如果使用`database-rider`, 可通过JPA读取数据, 使用第三方lib(e.g. Assertj), verify对应的Entity
+    - Few possible use cases
+      - Use DBUnit to unit test on data access layer, e.g. Entity and Repository behaviour
+      - Use DBUnit to set up testing data in slicing testing on a controller (saving effort from saving data all the time by JPA Entity)
+      - Data import and validation together with `database-rider`
+  - dbunit-first-try-junit5 -  examples of dbunit + H2 + Flyway + Apache Druid + JUnit5
+  - dbunit-junit5-springboot2 - examples of dbunit + database-rider (mostly) + Spring Boot2 + Junit5 + H2.
+    - Refer to <https://github.com/database-rider/database-rider/tree/master/rider-examples/spring-boot-dbunit-sample>
+    - @DBRider is with @ExtendWith(DBUnitExtension.class) - to support all annotations for DBUnit
+    - @SpringBootTest is with @ExtendWith(SpringExtension.class)
+- easymock
+  - easymock-basics - examples of easymock basic syntax and usage
+- hamcrest
 - junit4
   - junit4-basics - examples of junit4 basics syntax and usage
   - junit4-first-try - examples of junit4 all features + pl.pragmatists.JUnitParams for parameterizing
 - junit5
   - junit5-first-try - examples of junit5 basics syntax and usage
-- easymock
-  - easymock-basics - examples of easymock basic syntax and usage
 - mockito
-  - mockito3-first-try - examples of mockito to with mock features, BDD, static method, and all features mentions from official Mockito.java JavaDoc
-- dbunit
-  - dbunit-junit5-springboot2 - examples of dbunit + database-rider (enhancer of dbunit) + Spring Boot2 + Junit5 + H2. This example is using SpringBoot2 +  
-    - @DBRider is with @ExtendWith(DBUnitExtension.class) - to support all annotations for DBUnit
-    - @SpringBootTest is with @ExtendWith(SpringExtension.class)
-    - Pre-condition
-      - Need to prepare the database structure e.g. schema and tables;
-      - The tables can be created via,
-        - Flyway, etc. database migration tool + embedded database environment;
-        - Hibernate auto-ddl = create, with or without Spring + embedded database environment;
-        - Existing database server with tables.
-    - Few possible use cases
-      - Use DBUnit to unit test on data access layer, e.g. Entity and Repository behaviour
-      - Use DBUnit to set up testing data in slicing testing on controller (saving effort from saving data all the time by JPA Entity)
-      - Data validation together with `database-rider`
-  - dbunit-first-try - examples of dbunit + H2 + Flyway + Apache Druid + JUnit4 (as default). Understand how to connect to database; export to dataset file; verify tables. 
-  - dbunit-first-try-junit5 -  examples of dbunit + H2 + Flyway + Apache Druid + JUnit5
-- database-rider
-  - database-rider-first-try
-  - database-rider-first-try-junit5
+  - mockito3-first-try - examples of mockito to with mock features, BDD, static method, and all features mentions at Mockito.java JavaDoc
+- rest-assured
+- robot-framework
+- selenium
+- spock-framework
+- testng
+- wire-mock
 
 --------------------------------------------------------------------------------
 
