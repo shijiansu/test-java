@@ -26,7 +26,6 @@
       <version>4.2</version>
       <scope>test</scope>
     </dependency>
-    <!-- END -->
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
@@ -39,6 +38,7 @@
       <version>1.3</version>
       <scope>test</scope>
     </dependency>
+    <!-- END -->
   </dependencies>
 
   <build>
