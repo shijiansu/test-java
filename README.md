@@ -50,7 +50,7 @@
       - Use DBUnit to set up testing data in slicing testing on a controller (saving effort from saving data all the time by JPA Entity)
       - Data import and validation together with `database-rider`
   - dbunit-first-try-junit5 -  examples of dbunit + H2 + Flyway + Apache Druid + JUnit5
-  - dbunit-junit5-springboot2 - examples of dbunit + database-rider (mostly) + Spring Boot2 + Junit5 + H2.
+  - dbunit-junit5-springboot2 - examples of dbunit + database-rider (mostly) + Spring Boot2 + Junit5 + H2
     - Refer to <https://github.com/database-rider/database-rider/tree/master/rider-examples/spring-boot-dbunit-sample>
     - @DBRider is with @ExtendWith(DBUnitExtension.class) - to support all annotations for DBUnit
     - @SpringBootTest is with @ExtendWith(SpringExtension.class)
