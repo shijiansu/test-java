@@ -15,7 +15,7 @@
 --------------------------------------------------------------------------------
 
 - allure-framework
-  - example-allure-framework - examples of Allure configuration
+  - allure-framework-first-try (**TEST REPORT**) - examples of Allure configuration for Allure test report
 - assertj
 - cucumber
 - database-rider
@@ -33,7 +33,7 @@
   - database-rider-first-try-junit5 - examples of database-rdier + JPA + HSQLDB + Assertj + JUnit5
     - 直接支持JUnit5 + Spring, 不需要使用`rider-spring`
 - dbunit
-  - dbunit-first-try - examples of dbunit + H2 + Flyway + Apache Druid + JUnit4 (as default). Understand how to connect to database; export to dataset file; verify tables.
+  - dbunit-first-try - examples of dbunit + H2 + Flyway (default folder is resources/db/migration) + Apache Druid + JUnit4 (as default). Understand how to connect to database; export to dataset file; verify tables.
     - Pre-condition, need to prepare the database structure e.g. schema and tables, the tables can be created via,
       - Flyway, etc. database migration tool + embedded database environment;
       - Hibernate auto-ddl = create, with or without Spring + embedded database environment;
@@ -59,9 +59,11 @@
 - hamcrest
 - junit4
   - junit4-basics - examples of junit4 basics syntax and usage
-  - junit4-first-try - examples of junit4 all features + pl.pragmatists.JUnitParams for parameterizing
+  - junit4-first-try (**TEST REPORT**) + (**test report baseline project**) - examples of junit4 all features + pl.pragmatists.JUnitParams for parameterizing
+    - JUnit report - Maven Surefire report plugin -> run-test.sh
 - junit5
   - junit5-first-try - examples of junit5 basics syntax and usage
+    - JUnit report - Maven Surefire report plugin -> run-test.sh
 - mockito
   - mockito3-first-try - examples of mockito to with mock features, BDD, static method, and all features mentions at Mockito.java JavaDoc
 - rest-assured
