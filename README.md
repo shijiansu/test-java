@@ -15,7 +15,7 @@
 --------------------------------------------------------------------------------
 
 - allure-framework
-  - allure-framework-first-try (**TEST REPORT**) - examples of Allure configuration for Allure test report
+  - allure-framework-first-try [**TEST REPORT**] - examples of Allure configuration for Allure test report
 - assertj
 - cucumber
 - database-rider
@@ -59,7 +59,7 @@
 - hamcrest
 - junit4
   - junit4-basics - examples of junit4 basics syntax and usage
-  - junit4-first-try (**TEST REPORT**) + (**test report baseline project**) - examples of junit4 all features + pl.pragmatists.JUnitParams for parameterizing
+  - junit4-first-try [**TEST REPORT**] + [**test report baseline project**] - examples of junit4 all features + pl.pragmatists.JUnitParams for parameterizing
     - JUnit report - Maven Surefire report plugin -> run-test.sh
 - junit5
   - junit5-first-try - examples of junit5 basics syntax and usage
