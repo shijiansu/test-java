@@ -59,7 +59,7 @@
 - hamcrest
 - junit4
   - junit4-basics - examples of junit4 basics syntax and usage
-  - junit4-first-try [**TEST REPORT**] + [**test report baseline project**] - examples of junit4 all features + pl.pragmatists.JUnitParams for parameterizing
+  - junit4-first-try [**TEST REPORT**] + [**Test Report Baseline Project**] - examples of junit4 all features + pl.pragmatists.JUnitParams for parameterizing
     - JUnit report - Maven Surefire report plugin -> run-test.sh
 - junit5
   - junit5-first-try - examples of junit5 basics syntax and usage
