@@ -33,6 +33,7 @@ public class _3_IDatabaseTesterTest extends DBTestCase { // it is a JUnit Test
     ds.setUrl(DB_URL);
     ds.setUsername(DB_USER);
     ds.setPassword(DB_PASSWORD);
+    ds.setTestWhileIdle(false);
     return ds;
   }
 

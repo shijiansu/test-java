@@ -32,6 +32,7 @@ public class _5_DatabaseOperationTest {
     ds.setUrl(DB_URL);
     ds.setUsername(DB_USER);
     ds.setPassword(DB_PASSWORD);
+    ds.setTestWhileIdle(false);
     return ds;
   }
 
