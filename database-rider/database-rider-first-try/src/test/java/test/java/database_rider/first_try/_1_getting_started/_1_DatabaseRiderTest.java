@@ -7,11 +7,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static test.java.database_rider.first_try.Constants.PERSISTENCE_UNIT_1;
 
 import com.github.database.rider.core.DBUnitRule;
-import com.github.database.rider.core.api.configuration.DBUnit;
 import com.github.database.rider.core.api.dataset.DataSet;
 import com.github.database.rider.core.api.dataset.ExpectedDataSet;
 import com.github.database.rider.core.util.EntityManagerProvider;
 import java.util.List;
+import org.assertj.core.api.Assertions;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.RuleChain;
@@ -105,6 +105,25 @@ public class _1_DatabaseRiderTest {
   }
 
   @Test
+  // Transactional attribute will make Database Rider start a transaction before test and commit the
+  // transaction after test execution but before expected dataset comparison.
+  @DataSet(cleanBefore = true, transactional = true)
+  @ExpectedDataSet("_1_getting_started/users-expected-regex.yml")
+  public void shouldManageTransactionAutomatically() {
+    // FIXED for
+    // https://database-rider.github.io/database-rider/1.2.8/documentation.html#_assertion_using_automatic_transaction
+    Assertions.assertThat(EntityManagerProvider.isEntityManagerActive());
+    User u = new User();
+    u.setName("expected user1");
+    User u2 = new User();
+    u2.setName("expected user2");
+    em().persist(u);
+    em().persist(u2);
+    em().flush(); // need to manual flush, otherwise no data inserted
+  }
+
+  // "Warning: Nashorn engine is planned to be removed from a future JDK release"
+  @Test
   @DataSet(
       value = "_1_getting_started/tweets-with-javascript.yml",
       cleanBefore = true,
@@ -114,20 +133,5 @@ public class _1_DatabaseRiderTest {
         (Tweet) em().createQuery("select t from Tweet t where t.id = 1").getSingleResult();
     assertThat(tweet).isNotNull();
     assertThat(tweet.getLikes()).isEqualTo(50);
-  }
-
-  @Test
-  // Transactional attribute will make Database Rider start a transaction before test and commit the
-  // transaction after test execution but before expected dataset comparison.
-  @DataSet(cleanBefore = true, transactional = true, executorId = "TransactionIt")
-  @ExpectedDataSet(value = "_2_operation/user-expected-regex.yml")
-  @DBUnit(cacheConnection = true)
-  public void shouldManageTransactionAutomatically() {
-    User u = new User();
-    u.setName("expected user1");
-    User u2 = new User();
-    u2.setName("expected user2");
-    EntityManagerProvider.em().persist(u);
-    EntityManagerProvider.em().persist(u2);
   }
 }

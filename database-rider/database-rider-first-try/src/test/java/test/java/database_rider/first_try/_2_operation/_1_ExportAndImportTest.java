@@ -1,6 +1,7 @@
 package test.java.database_rider.first_try._2_operation;
 
 import static com.github.database.rider.core.util.EntityManagerProvider.em;
+import static com.github.database.rider.core.util.EntityManagerProvider.instance;
 import static com.github.database.rider.core.util.EntityManagerProvider.tx;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.contentOf;
@@ -24,8 +25,7 @@ import test.java.database_rider.first_try._1_getting_started.User;
 public class _1_ExportAndImportTest {
 
   // the instance("rider") is as in "persistence.xml" (JPA)
-  @Rule
-  public EntityManagerProvider emProvider = EntityManagerProvider.instance(PERSISTENCE_UNIT_1);
+  @Rule public EntityManagerProvider emProvider = instance(PERSISTENCE_UNIT_1);
 
   @Rule public DBUnitRule dbUnitRule = DBUnitRule.instance(emProvider.connection());
 
@@ -50,7 +50,14 @@ public class _1_ExportAndImportTest {
     File ymlDataSet = new File("data/_2_operation_out/yml/user.yml");
     assertThat(ymlDataSet).exists();
     assertThat(contentOf(ymlDataSet))
-        .contains("USER:" + NEW_LINE + "  - ID: 1" + NEW_LINE + "    NAME: \"u1\"" + NEW_LINE);
+        .contains(
+            "USER:"
+                + NEW_LINE
+                + "  - ID: "
+                + u1.getId()
+                + NEW_LINE
+                + "    NAME: \"u1\""
+                + NEW_LINE);
   }
 
   @Test
@@ -65,7 +72,7 @@ public class _1_ExportAndImportTest {
     tx().begin();
     User u1 = new User();
     u1.setName("u1");
-    EntityManagerProvider.em().persist(u1);
+    em().persist(u1);
     tx().commit();
     // with schema name
     DataSetExporter.getInstance()
@@ -73,10 +80,17 @@ public class _1_ExportAndImportTest {
             emProvider.connection(),
             new DataSetExportConfig().outputFileName("data/_2_operation_out/yml/user2.yml"),
             "public");
-    File ymlDataSet = new File("target/user.yml");
+    // verify
+    File ymlDataSet = new File("data/_2_operation_out/yml/user2.yml");
     assertThat(ymlDataSet).exists();
     assertThat(contentOf(ymlDataSet))
         .contains(
-            "USER:" + NEW_LINE + " - ID: " + u1.getId() + NEW_LINE + " NAME: \"u1\"" + NEW_LINE);
+            "USER:"
+                + NEW_LINE
+                + "  - ID: "
+                + u1.getId()
+                + NEW_LINE
+                + "    NAME: \"u1\""
+                + NEW_LINE);
   }
 }

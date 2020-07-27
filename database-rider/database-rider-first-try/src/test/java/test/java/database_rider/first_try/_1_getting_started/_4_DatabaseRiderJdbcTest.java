@@ -8,8 +8,6 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import org.junit.Rule;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.JUnit4;
 
 public class _4_DatabaseRiderJdbcTest {
 
