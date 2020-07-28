@@ -1,5 +1,5 @@
 ![](https://img.shields.io/badge/language-java-blue)
-![](https://img.shields.io/badge/technology-junit5,%20junit4-blue)
+![](https://img.shields.io/badge/technology-junit5,%20junit4,%20surefire--report-blue)
 ![](https://img.shields.io/badge/development%20year-2020-orange)
 ![](https://img.shields.io/badge/contributor-shijian%20su-purple)
 ![](https://img.shields.io/badge/license-MIT-lightgrey)
