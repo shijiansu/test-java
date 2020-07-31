@@ -1,0 +1,117 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>su.shijian</groupId>
+  <artifactId>allure-framework-first-try</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>jar</packaging>
+
+  <properties>
+    <encoding>UTF-8</encoding>
+    <project.encoding>${encoding}</project.encoding>
+    <project.build.sourceEncoding>${encoding}</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>${encoding}</project.reporting.outputEncoding>
+    <java.version>13</java.version>
+    <maven.compiler.target>${java.version}</maven.compiler.target>
+    <maven.compiler.source>${java.version}</maven.compiler.source>
+    <!-- START - Allure Framework -->
+    <aspectj.version>1.8.10</aspectj.version>
+    <!-- END -->
+  </properties>
+
+  <dependencies>
+    <!-- START - Allure Framework -->
+    <dependency>
+      <groupId>io.qameta.allure</groupId>
+      <artifactId>allure-junit4</artifactId>
+      <version>2.13.5</version>
+      <scope>test</scope>
+    </dependency>
+    <!-- END -->
+    <!-- START -->
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.13</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>pl.pragmatists</groupId>
+      <artifactId>JUnitParams</artifactId>
+      <version>1.1.1</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.hamcrest</groupId>
+      <artifactId>hamcrest-all</artifactId>
+      <version>1.3</version>
+      <scope>test</scope>
+    </dependency>
+    <!-- END -->
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.8.1</version>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>3.0.0-M4</version>
+        <dependencies>
+          <dependency>
+            <groupId>org.apache.maven.surefire</groupId>
+            <artifactId>surefire-junit47</artifactId>
+            <version>3.0.0-M4</version>
+          </dependency>
+          <!-- START - Allure Framework -->
+          <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>
+            <version>${aspectj.version}</version>
+          </dependency>
+          <!-- END -->
+        </dependencies>
+        <configuration>
+          <excludes>
+            <exclude>**/*ManualTest.java</exclude>
+          </excludes>
+          <!-- START - Allure Framework -->
+          <testFailureIgnore>false</testFailureIgnore>
+          <argLine>
+            -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
+          </argLine>
+          <properties>
+            <property>
+              <name>listener</name>
+              <value>io.qameta.allure.junit4.AllureJunit4</value>
+            </property>
+          </properties>
+          <systemPropertyVariables>
+            <allure.results.directory>${project.build.directory}/allure-results
+            </allure.results.directory>
+          </systemPropertyVariables>
+          <!-- END -->
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>io.qameta.allure</groupId>
+        <artifactId>allure-maven</artifactId>
+        <version>2.10.0</version>
+        <configuration>
+          <properties>
+            <!-- 报表对应版本 - https://docs.qameta.io/allure/#_report_version -->
+            <reportVersion>2.7.0</reportVersion>
+            <reportDirectory>${project.build.directory}/allure-results</reportDirectory>
+            <!-- <allure.issues.tracker.pattern>http://example.com/%s</allure.issues.tracker.pattern> -->
+          </properties>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+</project>
